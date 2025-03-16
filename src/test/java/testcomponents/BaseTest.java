@@ -58,40 +58,36 @@ public class BaseTest {
      * @throws IOException Si ocurre un error al leer el archivo de configuración.
      */
     public WebDriver InitializeDriver() throws IOException {
-
-        // Cargar las propiedades desde el archivo GlobalData.properties
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/test/java/resources/GlobalData.properties");
         prop.load(fis);
 
-        // Determinar el navegador a utilizar (por parámetro o por propiedades)
         String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : prop.getProperty("browser");
 
-        // Seleccionar e inicializar el navegador según el nombre
         switch (browserName) {
             case "chrome":
-                chromeOptions.addArguments("--headless"); // Ejecutar en modo headless (sin interfaz gráfica)
-                WebDriverManager.chromedriver(); // Administrar el driver de Chrome
+                WebDriverManager.chromedriver().setup();
+                chromeOptions.addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(chromeOptions);
                 break;
 
             case "edge":
-                edgeOptions.addArguments("--headless"); // Ejecutar en modo headless
-                WebDriverManager.edgedriver(); // Administrar el driver de Edge
+                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver(edgeOptions);
                 break;
 
             case "firefox":
-                firefoxOptions.addArguments("--headless"); // Ejecutar en modo headless
-                WebDriverManager.firefoxdriver(); // Administrar el driver de Firefox
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
 
             default:
-                // Si no se especifica un navegador válido, no se realiza ninguna acción
+                // Si no se especifica un navegador válido, usar Chrome por defecto
+                WebDriverManager.chromedriver().setup();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                driver = new ChromeDriver(chromeOptions);
         }
 
-        // Configurar tiempos de espera implícitos y maximizar la ventana del navegador
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 

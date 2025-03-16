@@ -33,7 +33,7 @@ public class AbstractComponents {
     }
 
     // Elementos de la página mapeados con la anotación @FindBy
-    @FindBy(css = "[routerlink*='cart']")
+    @FindBy(css = "button[routerLink='/dashboard/cart']")
     WebElement cartHeader; // Enlace al carrito de compras
     @FindBy(css = "[routerlink*='myorders']")
     WebElement orderHeader; // Enlace a la página de pedidos

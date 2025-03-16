@@ -84,6 +84,7 @@ public class ProductCataloguePage extends AbstractComponents {
         WebElement prod = getProductByName(productName); // Busca el producto por nombre
         prod.findElement(addToCart).click(); // Hace clic en el botón "Añadir al carrito"
         waitForElementToAppear(toastMessage); // Espera a que aparezca el mensaje emergente
+        Thread.sleep(2000);
     }
 }
 
