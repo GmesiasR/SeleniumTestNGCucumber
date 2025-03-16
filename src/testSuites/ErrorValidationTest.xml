@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Gonzalo's Test">
+    <listeners>
+        <listener class-name="testcomponents.Listeners"/>
+    </listeners>
+
+
+
+    <test thread-count="5" name="Error Validation">
+        <classes>
+            <class name="tests.ErrorValidationTest">
+            </class>
+        </classes>
+    </test>
+</suite>
