@@ -16,6 +16,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pageobjects.LandingPage;
+import pageobjects.SolotodoPage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,6 +44,7 @@ public class BaseTest {
 
     // Página de aterrizaje (LandingPage) que se utiliza como punto de entrada
     public LandingPage landingPage;
+    public SolotodoPage solotodoPage;
 
     // Rutas del sistema y del directorio de informes
     protected static String systemPath = System.getProperty("user.dir");
@@ -148,6 +150,12 @@ public class BaseTest {
         landingPage = new LandingPage(driver); // Crear una instancia de LandingPage
         landingPage.goTo(); // Navegar a la página de inicio
         return landingPage;
+    }
+    public SolotodoPage launchApplicationSolotodo() throws IOException {
+        driver = InitializeDriver(); // Inicializar el WebDriver
+        solotodoPage = new SolotodoPage(driver); // Crear una instancia de LandingPage
+        solotodoPage.goTo(); // Navegar a la página de inicio
+        return solotodoPage;
     }
 
     /**

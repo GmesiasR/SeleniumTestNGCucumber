@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
     features = "src/test/java/cucumber",
     glue = "stepdefinitions",
     monochrome = true,
-    tags = "@regression",
+    tags = "@Solotodo",
     plugin = {"html:target/cucumber.html",
     }
 )
